@@ -5,14 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:duplHEX"
         mc:Ignorable="d"
-        Title="duplHEX" Height="450" Width="800">
+        Title="duplHEX" Height="600" Width="1000">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
         <avalonEdit:TextEditor
-            Grid.Row="1"
             xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
             Name="textEditor"
             FontFamily="Consolas"
             SyntaxHighlighting="C#"
             FontSize="12pt" Margin="10,10,10,10"/>
+
+        <Button x:Name="btnClose" Content="Close" Grid.Column="1" HorizontalAlignment="Left" Margin="100,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="90" Height="30" Click="btnClose_Click"/>
     </Grid>
 </Window>
