@@ -23,6 +23,11 @@
             SyntaxHighlighting="C#"
             FontSize="12pt" Margin="10,10,10,10"/>
 
-        <Button x:Name="btnClose" Content="Close" Grid.Column="1" HorizontalAlignment="Left" Margin="100,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="90" Height="30" Click="btnClose_Click"/>
+        <Label x:Name="lblLoadedFile" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" />
+        
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button x:Name="btnLoadFile" Content="Load File" Width="90" Height="30" Margin="5,10,10,10" Click="btnLoadFile_Click" />
+            <Button x:Name="btnClose" Content="Close" Width="80" Height="30" Margin="5,10,10,10" Click="btnClose_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
