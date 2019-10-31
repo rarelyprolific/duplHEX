@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,22 +27,32 @@ namespace duplHEX
             InitializeComponent();
         }
 
-        private void btnClose_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Loads a file and populates the viewer
+        /// </summary>
+        private async void btnLoadFile_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
-        }
+            textEditor.Clear();
 
-        private void btnLoadFile_Click(object sender, RoutedEventArgs e)
-        {
             var openFileDialog = new OpenFileDialog();
 
             if (openFileDialog.ShowDialog() == true)
             {
                 lblLoadedFile.Content = $"Loading.. {openFileDialog.FileName}";
 
-                // TODO: Load this file and print the hex in AvalonEditor
-            }
+                byte[] fileBytes = await File.ReadAllBytesAsync(openFileDialog.FileName);
+                textEditor.AppendText(new HexBuilder().BuildHex(fileBytes));
 
+                lblDetectedFileType.Content = "Detected file type: Unknown :(";
+            }
+        }
+
+        /// <summary>
+        /// Closes the application
+        /// </summary>
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

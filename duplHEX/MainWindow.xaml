@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:duplHEX"
         mc:Ignorable="d"
-        Title="duplHEX" Height="600" Width="1000">
+        Title="duplHEX" Height="600" Width="1100">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -23,7 +23,10 @@
             SyntaxHighlighting="C#"
             FontSize="12pt" Margin="10,10,10,10"/>
 
-        <Label x:Name="lblLoadedFile" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" />
+        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+            <Label x:Name="lblLoadedFile" HorizontalAlignment="Left" />
+            <Label x:Name="lblDetectedFileType" HorizontalAlignment="Left" FontWeight="Bold" />
+        </StackPanel>
         
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Button x:Name="btnLoadFile" Content="Load File" Width="90" Height="30" Margin="5,10,10,10" Click="btnLoadFile_Click" />
