@@ -3,34 +3,54 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:duplHEX"
         mc:Ignorable="d"
         Title="duplHEX" Height="600" Width="1100">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition Width="200" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
+        <Menu Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="0">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Load File" Click="LoadFile_Click">
+                    <MenuItem.Icon>
+                        <iconPacks:PackIconTypicons Kind="FolderOpen" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="_About">
+                    <MenuItem.Icon>
+                        <iconPacks:PackIconTypicons Kind="Info" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="_Exit" Click="Exit_Click">
+                    <MenuItem.Icon>
+                        <iconPacks:PackIconTypicons Kind="DeleteOutline" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
         <avalonEdit:TextEditor
             xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+            Grid.Row="1"
             Name="textEditor"
             FontFamily="Consolas"
             SyntaxHighlighting="C#"
+            IsReadOnly="True"
             FontSize="12pt" Margin="10,10,10,10"/>
 
-        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
             <Label x:Name="lblLoadedFile" HorizontalAlignment="Left" />
             <Label x:Name="lblDetectedFileType" HorizontalAlignment="Left" FontWeight="Bold" />
-        </StackPanel>
-        
-        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <Button x:Name="btnLoadFile" Content="Load File" Width="90" Height="30" Margin="5,10,10,10" Click="btnLoadFile_Click" />
-            <Button x:Name="btnClose" Content="Close" Width="80" Height="30" Margin="5,10,10,10" Click="btnClose_Click"/>
         </StackPanel>
     </Grid>
 </Window>

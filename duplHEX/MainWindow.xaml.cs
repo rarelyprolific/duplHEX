@@ -30,7 +30,7 @@ namespace duplHEX
         /// <summary>
         /// Loads a file and populates the viewer
         /// </summary>
-        private async void btnLoadFile_Click(object sender, RoutedEventArgs e)
+        private async void LoadFile_Click(object sender, RoutedEventArgs e)
         {
             textEditor.Clear();
 
@@ -48,9 +48,9 @@ namespace duplHEX
         }
 
         /// <summary>
-        /// Closes the application
+        /// Exits the application
         /// </summary>
-        private void btnClose_Click(object sender, RoutedEventArgs e)
+        private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
