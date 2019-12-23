@@ -14,10 +14,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Menu Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="0">
+        <Menu Grid.Row="0">
             <MenuItem Header="_File">
                 <MenuItem Header="_Load File" Click="LoadFile_Click">
                     <MenuItem.Icon>
@@ -41,6 +41,9 @@
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
+            <MenuItem Header="_ZX Spectrum TZX [CONTEXTUAL!]">
+                <MenuItem Header="_Block Viewer"></MenuItem>
+            </MenuItem>
         </Menu>
 
         <avalonEdit:TextEditor
@@ -50,11 +53,33 @@
             FontFamily="Consolas"
             SyntaxHighlighting="C#"
             IsReadOnly="True"
+            HorizontalScrollBarVisibility="Hidden"
             FontSize="12pt" Margin="10,10,10,10" Drop="DropAFileInEditor_Drop"/>
 
-        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
-            <Label x:Name="lblLoadedFile" HorizontalAlignment="Left" />
-            <Label x:Name="lblDetectedFileType" HorizontalAlignment="Left" FontWeight="Bold" />
-        </StackPanel>
+        <StatusBar Grid.Row="2">
+            <StatusBarItem>
+                <Label x:Name="lblLoadedFile" HorizontalAlignment="Left" Content="No file loaded!" />
+            </StatusBarItem>
+            <Separator />
+            <StatusBarItem>
+                <Label x:Name="lblDetectedFileType" HorizontalAlignment="Left" FontWeight="Bold" />
+            </StatusBarItem>
+            <Separator />
+            <Label Content="Change Font Size:"></Label>
+            <StatusBarItem>
+                <Button>
+                    <Button.Content>
+                        <iconPacks:PackIconTypicons Kind="ArrowDownOutline" />
+                    </Button.Content>
+                </Button>
+            </StatusBarItem>
+            <StatusBarItem>
+                <Button>
+                    <Button.Content>
+                        <iconPacks:PackIconTypicons Kind="ArrowUpOutline" />
+                    </Button.Content>
+                </Button>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>
