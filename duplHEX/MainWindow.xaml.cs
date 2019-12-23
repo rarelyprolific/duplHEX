@@ -27,22 +27,28 @@ namespace duplHEX
             InitializeComponent();
         }
 
+        private async void DropAFileInEditor_Drop(object sender, DragEventArgs e)
+        {
+            // Check we have a file to read
+            if (e.Data.GetDataPresent(DataFormats.FileDrop, true))
+            {
+                // Get the file data
+                var fileDetails = e.Data.GetData(DataFormats.FileDrop, true) as string[];
+                await LoadFileAndDisplayHex(fileDetails[0]);
+            }
+        }
+
         /// <summary>
         /// Loads a file and populates the viewer
         /// </summary>
         private async void LoadFile_Click(object sender, RoutedEventArgs e)
         {
-            textEditor.Clear();
-
             var openFileDialog = new OpenFileDialog();
 
             if (openFileDialog.ShowDialog() == true)
             {
                 lblLoadedFile.Content = $"Loading.. {openFileDialog.FileName}";
-
-                byte[] fileBytes = await File.ReadAllBytesAsync(openFileDialog.FileName);
-                textEditor.AppendText(new HexBuilder().BuildHex(fileBytes));
-
+                await LoadFileAndDisplayHex(openFileDialog.FileName);
                 lblDetectedFileType.Content = "Detected file type: Unknown :(";
             }
         }
@@ -53,6 +59,18 @@ namespace duplHEX
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        /// <summary>
+        /// Loads a file and displays the hex in the text editor
+        /// </summary>
+        /// <param name="pathToFile">The full path to the file to load</param>
+        private async Task LoadFileAndDisplayHex(string pathToFile)
+        {
+            hexViewer.Clear();
+
+            byte[] fileBytes = await new FileLoader().LoadFile(pathToFile);
+            hexViewer.AppendText(new HexBuilder().BuildHex(fileBytes));
         }
     }
 }

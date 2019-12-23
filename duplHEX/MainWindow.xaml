@@ -24,6 +24,10 @@
                         <iconPacks:PackIconTypicons Kind="FolderOpen" />
                     </MenuItem.Icon>
                 </MenuItem>
+                <MenuItem Header="_Recently Viewed Files">
+                    <MenuItem Header="First File TODO" />
+                    <MenuItem Header="Second File TODO" />
+                </MenuItem>
                 <Separator />
                 <MenuItem Header="_About">
                     <MenuItem.Icon>
@@ -42,11 +46,11 @@
         <avalonEdit:TextEditor
             xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
             Grid.Row="1"
-            Name="textEditor"
+            Name="hexViewer"
             FontFamily="Consolas"
             SyntaxHighlighting="C#"
             IsReadOnly="True"
-            FontSize="12pt" Margin="10,10,10,10"/>
+            FontSize="12pt" Margin="10,10,10,10" Drop="DropAFileInEditor_Drop"/>
 
         <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
             <Label x:Name="lblLoadedFile" HorizontalAlignment="Left" />
