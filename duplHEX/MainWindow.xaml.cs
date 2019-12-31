@@ -25,9 +25,17 @@ namespace duplHEX
         public MainWindow()
         {
             InitializeComponent();
+
+            // Sets up the width for the hex view for a specific font size
+            // TODO: Adjust and re-calculate this when the font size changes.
+            this.MinWidth = 900;
+            this.MaxWidth = 900;
         }
 
-        private async void DropAFileInEditor_Drop(object sender, DragEventArgs e)
+        /// <summary>
+        /// Captures a file dropped onto the hex viewer control and loads it
+        /// </summary>
+        private async void HexViewer_FileDrop(object sender, DragEventArgs e)
         {
             // Check we have a file to read
             if (e.Data.GetDataPresent(DataFormats.FileDrop, true))
@@ -48,18 +56,10 @@ namespace duplHEX
             if (openFileDialog.ShowDialog() == true)
             {
                 await LoadFileAndDisplayHex(openFileDialog.FileName);
-                lblLoadedFile.Content = $"Loaded: {openFileDialog.FileName}";
-                sepDetectedFileType.Visibility = Visibility.Visible;
-                lblDetectedFileType.Content = "Unknown file type";
+                LoadedFileLabel.Content = $"Loaded: {openFileDialog.FileName}";
+                DetectedFileTypeSeparator.Visibility = Visibility.Visible;
+                DetectedFileTypeLabel.Content = "Unknown file type";
             }
-        }
-
-        /// <summary>
-        /// Exits the application
-        /// </summary>
-        private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
         }
 
         /// <summary>
@@ -68,17 +68,29 @@ namespace duplHEX
         /// <param name="pathToFile">The full path to the file to load</param>
         private async Task LoadFileAndDisplayHex(string pathToFile)
         {
-            hexViewer.Clear();
+            HexViewer.Clear();
 
             byte[] fileBytes = await new FileLoader().LoadFile(pathToFile);
-            hexViewer.AppendText(new HexBuilder().BuildHex(fileBytes));
+            HexViewer.AppendText(new HexBuilder().BuildHex(fileBytes));
         }
 
+        /// <summary>
+        /// Shows the About window
+        /// </summary>
         private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
             var aboutWindow = new AboutWindow();
             aboutWindow.Owner = this;
             aboutWindow.ShowDialog();
+        }
+
+
+        /// <summary>
+        /// Exits the application
+        /// </summary>
+        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

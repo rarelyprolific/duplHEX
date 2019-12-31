@@ -35,7 +35,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
-                <MenuItem Header="_Exit" Click="Exit_Click">
+                <MenuItem Header="_Exit" Click="ExitMenuItem_Click">
                     <MenuItem.Icon>
                         <iconPacks:PackIconTypicons Kind="DeleteOutline" />
                     </MenuItem.Icon>
@@ -49,20 +49,20 @@
         <avalonEdit:TextEditor
             xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
             Grid.Row="1"
-            Name="hexViewer"
+            x:Name="HexViewer"
             FontFamily="Consolas"
             SyntaxHighlighting="C#"
             IsReadOnly="True"
             HorizontalScrollBarVisibility="Hidden"
-            FontSize="12pt" Margin="10,10,10,10" Drop="DropAFileInEditor_Drop"/>
+            FontSize="12pt" Margin="10,10,10,10" Drop="HexViewer_FileDrop"/>
 
         <StatusBar Grid.Row="2">
             <StatusBarItem>
-                <Label x:Name="lblLoadedFile" HorizontalAlignment="Left" Content="No file loaded!" />
+                <Label x:Name="LoadedFileLabel" HorizontalAlignment="Left" Content="No file loaded!" />
             </StatusBarItem>
-            <Separator x:Name="sepDetectedFileType" Visibility="Hidden" />
+            <Separator x:Name="DetectedFileTypeSeparator" Visibility="Hidden" />
             <StatusBarItem>
-                <Label x:Name="lblDetectedFileType" HorizontalAlignment="Left" FontWeight="Bold" />
+                <Label x:Name="DetectedFileTypeLabel" HorizontalAlignment="Left" FontWeight="Bold" />
             </StatusBarItem>
         </StatusBar>
     </Grid>
