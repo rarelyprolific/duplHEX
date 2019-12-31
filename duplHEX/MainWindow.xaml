@@ -29,7 +29,7 @@
                     <MenuItem Header="Second File TODO" />
                 </MenuItem>
                 <Separator />
-                <MenuItem Header="_About">
+                <MenuItem Header="_About" Click="AboutMenuItem_Click">
                     <MenuItem.Icon>
                         <iconPacks:PackIconTypicons Kind="Info" />
                     </MenuItem.Icon>
@@ -60,25 +60,9 @@
             <StatusBarItem>
                 <Label x:Name="lblLoadedFile" HorizontalAlignment="Left" Content="No file loaded!" />
             </StatusBarItem>
-            <Separator />
+            <Separator x:Name="sepDetectedFileType" Visibility="Hidden" />
             <StatusBarItem>
                 <Label x:Name="lblDetectedFileType" HorizontalAlignment="Left" FontWeight="Bold" />
-            </StatusBarItem>
-            <Separator />
-            <Label Content="Change Font Size:"></Label>
-            <StatusBarItem>
-                <Button>
-                    <Button.Content>
-                        <iconPacks:PackIconTypicons Kind="ArrowDownOutline" />
-                    </Button.Content>
-                </Button>
-            </StatusBarItem>
-            <StatusBarItem>
-                <Button>
-                    <Button.Content>
-                        <iconPacks:PackIconTypicons Kind="ArrowUpOutline" />
-                    </Button.Content>
-                </Button>
             </StatusBarItem>
         </StatusBar>
     </Grid>

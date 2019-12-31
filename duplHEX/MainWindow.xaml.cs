@@ -47,9 +47,10 @@ namespace duplHEX
 
             if (openFileDialog.ShowDialog() == true)
             {
-                lblLoadedFile.Content = $"Loading.. {openFileDialog.FileName}";
                 await LoadFileAndDisplayHex(openFileDialog.FileName);
-                lblDetectedFileType.Content = "Detected file type: Unknown :(";
+                lblLoadedFile.Content = $"Loaded: {openFileDialog.FileName}";
+                sepDetectedFileType.Visibility = Visibility.Visible;
+                lblDetectedFileType.Content = "Unknown file type";
             }
         }
 
@@ -71,6 +72,13 @@ namespace duplHEX
 
             byte[] fileBytes = await new FileLoader().LoadFile(pathToFile);
             hexViewer.AppendText(new HexBuilder().BuildHex(fileBytes));
+        }
+
+        private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var aboutWindow = new AboutWindow();
+            aboutWindow.Owner = this;
+            aboutWindow.ShowDialog();
         }
     }
 }
