@@ -9,8 +9,6 @@ namespace duplHEX
     /// </summary>
     public class HexBuilder
     {
-        private const char SingleSpace = ' ';
-
         public string BuildHex(ReadOnlySpan<byte> fileBytes)
         {
             var hex = new StringBuilder();
@@ -33,9 +31,9 @@ namespace duplHEX
                 }
 
                 // Builds a single row to display 16 bytes of the file
-                hex.AppendLine($"{rowNumber.ToString().PadRight(10, SingleSpace)}  {BuildHexRow(rowBytes)} {spacePadding} {BuildAscii(rowBytes)}");
+                hex.AppendLine($"{rowNumber.ToString("X").PadLeft(8, '0')}  {BuildHexRow(rowBytes)} {spacePadding} {BuildAscii(rowBytes)}");
 
-                rowNumber += 20;
+                rowNumber += 16;
                 byteOffset += 16;
             }
 

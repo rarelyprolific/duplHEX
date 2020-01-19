@@ -51,7 +51,6 @@
             Grid.Row="1"
             x:Name="HexViewer"
             FontFamily="Consolas"
-            SyntaxHighlighting="C#"
             IsReadOnly="True"
             HorizontalScrollBarVisibility="Hidden"
             FontSize="12pt" Margin="10,10,10,10" Drop="HexViewer_FileDrop"/>

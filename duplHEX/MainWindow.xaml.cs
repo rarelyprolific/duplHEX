@@ -58,7 +58,7 @@ namespace duplHEX
                 await LoadFileAndDisplayHex(openFileDialog.FileName);
                 LoadedFileLabel.Content = $"Loaded: {openFileDialog.FileName}";
                 DetectedFileTypeSeparator.Visibility = Visibility.Visible;
-                DetectedFileTypeLabel.Content = "Unknown file type";
+                DetectedFileTypeLabel.Content = "Unknown file type - XXMB [xxxxxxx bytes]";
             }
         }
 
